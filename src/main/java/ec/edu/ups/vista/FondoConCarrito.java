@@ -12,7 +12,7 @@ public class FondoConCarrito extends JDesktopPane {
 
         fondo.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
-        fondo.setColor(new Color(255, 204, 204)); // Rosa pastel
+        fondo.setColor(new Color(255, 204, 204));
         fondo.fillRect(0, 0, getWidth(), getHeight());
 
         int ejeX = getWidth() / 2;
