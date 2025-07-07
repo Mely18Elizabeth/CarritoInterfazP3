@@ -8,7 +8,6 @@ public class EliminarCarrito extends JInternalFrame {
     private JButton btnBuscar;
     private JButton btnEliminar;
     private JScrollPane tablaEliminar;
-    private JTable tblcarrito;
     private JComboBox listaProductos;
     private JPanel panelPrincipal;
 
@@ -41,9 +40,6 @@ public class EliminarCarrito extends JInternalFrame {
         return tablaEliminar;
     }
 
-    public JTable getTblcarrito() {
-        return tblcarrito;
-    }
 
     public JComboBox getListaProductos() {
         return listaProductos;

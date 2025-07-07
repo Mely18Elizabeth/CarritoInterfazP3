@@ -28,7 +28,6 @@ public class MenuPrincipalView extends JFrame {
 
     private JMenuItem menuItemEliminarUsuario;
     private JMenuItem menuItemUsuarioLista;
-    private JMenuItem menuItemRegistarUsuario;
     private JMenuItem menuItemEditarUsuario;
 
     private JMenuItem menuItemIdiomaEspanol;
@@ -70,7 +69,6 @@ public class MenuPrincipalView extends JFrame {
         // Usuario menu items
         menuItemEliminarUsuario = new JMenuItem(mensajeInternacionalizacionHandler.get("menu.usuario.eliminar"));
         menuItemUsuarioLista = new JMenuItem(mensajeInternacionalizacionHandler.get("menu.usuario.lista"));
-        menuItemRegistarUsuario = new JMenuItem(mensajeInternacionalizacionHandler.get("menu.usuario.registrar"));
         menuItemEditarUsuario = new JMenuItem(mensajeInternacionalizacionHandler.get("menu.usuario.editar"));
 
         // Idiomas
@@ -94,7 +92,6 @@ public class MenuPrincipalView extends JFrame {
 
         menuUsuario.add(menuItemEliminarUsuario);
         menuUsuario.add(menuItemUsuarioLista);
-        menuUsuario.add(menuItemRegistarUsuario);
         menuUsuario.add(menuItemEditarUsuario);
 
         menuIdioma.add(menuItemIdiomaEspanol);
@@ -167,6 +164,8 @@ public class MenuPrincipalView extends JFrame {
         return menuItemCarrito;
     }
 
+
+
     public JMenuItem getMenuItemEliminarCarrito() {
         return menuItemEliminarCarrito;
     }
@@ -179,9 +178,6 @@ public class MenuPrincipalView extends JFrame {
         return jDesktopPane;
     }
 
-    public JMenuItem getMenuItemRegistarUsuario() {
-        return menuItemRegistarUsuario;
-    }
 
     public JMenuItem getMenuItemEditarUsuario() {
         return menuItemEditarUsuario;
@@ -195,14 +191,15 @@ public class MenuPrincipalView extends JFrame {
         getMenuItemCrearProducto().setEnabled(false);
         getMenuItemActualizarProducto().setEnabled(false);
         getMenuItemEliminarProducto().setEnabled(false);
+
         getMenuItemEliminarUsuario().setEnabled(false);
-        getMenuItemUsuarioLista().setEnabled(false);
-        getMenuItemEliminarCarrito().setEnabled(false);
-        getMenuItemModificarCarrito().setEnabled(false);
-        getMenuItemRegistarUsuario().setEnabled(false);
         getMenuItemEditarUsuario().setEnabled(false);
 
+        getMenuItemEliminarCarrito().setEnabled(false);
+        getMenuItemModificarCarrito().setEnabled(false);
+
     }
+
 
     public void cambiarIdioma(String lenguaje, String pais) {
         mensajeInternacionalizacionHandler.setLenguaje(lenguaje, pais);
@@ -229,7 +226,6 @@ public class MenuPrincipalView extends JFrame {
         menuItemEliminarUsuario.setText(mensajeInternacionalizacionHandler.get("menu.usuario.eliminar"));
         menuItemUsuarioLista.setText(mensajeInternacionalizacionHandler.get("menu.usuario.lista"));
         menuItemEditarUsuario.setText(mensajeInternacionalizacionHandler.get("menu.usuario.editar"));
-        menuItemRegistarUsuario.setText(mensajeInternacionalizacionHandler.get("menu.usuario.registrar"));
 
         menuItemIdiomaEspanol.setText(mensajeInternacionalizacionHandler.get("menu.idioma.es"));
         menuItemIdiomaIngles.setText(mensajeInternacionalizacionHandler.get("menu.idioma.en"));
@@ -237,4 +233,17 @@ public class MenuPrincipalView extends JFrame {
 
         menuItemSalir.setText(mensajeInternacionalizacionHandler.get("menu.salir.salir"));
     }
+    public void mostrarVentana(JInternalFrame ventana) {
+        if (!ventana.isVisible()) {
+            jDesktopPane.add(ventana);
+            ventana.setVisible(true);
+        }
+        try {
+            ventana.setSelected(true);
+            ventana.toFront();
+        } catch (java.beans.PropertyVetoException e) {
+            e.printStackTrace();
+        }
+    }
+
 }

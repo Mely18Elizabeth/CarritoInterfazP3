@@ -1,26 +1,30 @@
 package ec.edu.ups.vista;
-
+import ec.edu.ups.modelo.Carrito;
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 
 public class CarritoListar extends JInternalFrame {
 
     private JPanel panelPrincipal;
     private JTable tblListas;
     private JButton btnListar;
-    private JComboBox<String> listaUsuarios;
+    private DefaultTableModel modelo;
+
 
     public CarritoListar() {
-        setContentPane(panelPrincipal); // Usa el panel generado por el .form
+        setContentPane(panelPrincipal);
         setTitle("Listar Carritos");
         setDefaultCloseOperation(JInternalFrame.DISPOSE_ON_CLOSE);
         setSize(600, 400);
         setClosable(true);
         setIconifiable(true);
         setResizable(true);
-        setVisible(false);
-    }
 
-    // Getters para acceso a los componentes
+        modelo = new DefaultTableModel();
+        Object[] columnas = {"Nombre","Productos", "SubTotal", "Total"};
+        modelo.setColumnIdentifiers(columnas);
+        tblListas.setModel(modelo);
+    }
 
     public JPanel getPanelPrincipal() {
         return panelPrincipal;
@@ -34,7 +38,4 @@ public class CarritoListar extends JInternalFrame {
         return btnListar;
     }
 
-    public JComboBox<String> getListaUsuarios() {
-        return listaUsuarios;
-    }
 }

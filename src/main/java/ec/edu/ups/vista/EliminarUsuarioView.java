@@ -1,6 +1,7 @@
 package ec.edu.ups.vista;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 
 public class EliminarUsuarioView extends JInternalFrame {
 
@@ -8,18 +9,24 @@ public class EliminarUsuarioView extends JInternalFrame {
     private JTextField textEliminar;
     private JButton btnBuscar;
     private JButton btnEliminar;
-    private JScrollPane scrollTabla;
     private JTable tblUsuarios;
+    private DefaultTableModel modelo;
+
 
     public EliminarUsuarioView() {
-        setContentPane(panelPrincipal);
-        setTitle("Eliminar Usuario");
+        super("Lista de Usuarios", true, true, true, true);
         setDefaultCloseOperation(JInternalFrame.DISPOSE_ON_CLOSE);
-        setSize(500, 400);
+
+        setContentPane(panelPrincipal);
+        setSize(600, 400);
         setClosable(true);
         setIconifiable(true);
         setResizable(true);
-        setVisible(false);
+
+        modelo = new DefaultTableModel();
+        Object[] columnas = {"Nombre","Apellido", "Usuario", "Rol"};
+        modelo.setColumnIdentifiers(columnas);
+        tblUsuarios.setModel(modelo);
     }
 
     public JTextField getTextEliminar() {

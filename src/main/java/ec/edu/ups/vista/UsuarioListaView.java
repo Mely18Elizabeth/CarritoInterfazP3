@@ -1,6 +1,7 @@
 package ec.edu.ups.vista;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 
 public class UsuarioListaView extends JInternalFrame {
 
@@ -9,13 +10,25 @@ public class UsuarioListaView extends JInternalFrame {
     private JButton btnBuscar;
     private JTable tblUsuarios;
     private JButton btnListar;
+    private DefaultTableModel modelo;
+
 
     public UsuarioListaView() {
         super("Lista de Usuarios", true, true, true, true);
+        setDefaultCloseOperation(JInternalFrame.DISPOSE_ON_CLOSE);
+
         setContentPane(panelPrincipal);
-        setSize(500, 400);
-        setVisible(false);  // No visible por defecto
+        setSize(600, 400);
+        setClosable(true);
+        setIconifiable(true);
+        setResizable(true);
+
+        modelo = new DefaultTableModel();
+        Object[] columnas = {"Nombre","Apellido", "Usuario", "Rol"};
+        modelo.setColumnIdentifiers(columnas);
+        tblUsuarios.setModel(modelo);
     }
+
 
     public JPanel getPanelPrincipal() {
         return panelPrincipal;
@@ -56,4 +69,9 @@ public class UsuarioListaView extends JInternalFrame {
     public void setBtnListar(JButton btnListar) {
         this.btnListar = btnListar;
     }
+
+    public void mostrarMensaje(String mensaje) {
+        JOptionPane.showMessageDialog(this, mensaje);
+    }
+
 }

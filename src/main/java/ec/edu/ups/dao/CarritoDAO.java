@@ -13,11 +13,13 @@ public interface CarritoDAO {
 
     void actualizar(Carrito carrito);
 
-    void eliminar(int codigo);
-
     List<Carrito> listarTodos();
 
     List<Carrito> listarPorUsuario(Usuario usuario);
+    List<Carrito> buscarPorNombreUsuario(String nombreUsuario);
+    void eliminarPorNombreUsuario(String nombreUsuario);
+
+
 
 
 }

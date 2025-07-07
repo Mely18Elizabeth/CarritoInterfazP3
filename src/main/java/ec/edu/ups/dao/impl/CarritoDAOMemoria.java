@@ -12,9 +12,22 @@ public class CarritoDAOMemoria implements CarritoDAO {
 
     private List<Carrito> carritos;
 
+
+
     public CarritoDAOMemoria() {
         this.carritos = new ArrayList<Carrito>();
     }
+
+    public List<Carrito> buscarPorNombreUsuario(String nombreUsuario) {
+        List<Carrito> resultados = new ArrayList<>();
+        for (Carrito c : carritos) { // suponiendo lista carritos
+            if (c.getUsuario().getNombre().equalsIgnoreCase(nombreUsuario)) {
+                resultados.add(c);
+            }
+        }
+        return resultados;
+    }
+
 
     @Override
     public void crear(Carrito carrito) {
@@ -34,23 +47,24 @@ public class CarritoDAOMemoria implements CarritoDAO {
     @Override
     public void actualizar(Carrito carrito) {
         for (int i = 0; i < carritos.size(); i++) {
-            if (carritos.get(i).getCodigo() == carrito.getCodigo()) {
-                carritos.set(i, carrito);
+            if (carritos.get(i).getUsuario().getNombre().equalsIgnoreCase(carrito.getUsuario().getNombre())) {
+                carritos.set(i, carrito);  // Reemplaza el carrito completo
                 break;
             }
         }
     }
 
-    @Override
-    public void eliminar(int codigo) {
+    public void eliminarPorNombreUsuario(String nombreUsuario) {
         Iterator<Carrito> iterator = carritos.iterator();
         while (iterator.hasNext()) {
             Carrito carrito = iterator.next();
-            if (carrito.getCodigo() == codigo) {
+            if (carrito.getUsuario().getNombre().equalsIgnoreCase(nombreUsuario)) {
                 iterator.remove();
+                break; // si solo quieres eliminar el primero
             }
         }
     }
+
 
     @Override
     public List<Carrito> listarTodos() {

@@ -1,6 +1,9 @@
 package ec.edu.ups.vista;
 
+import ec.edu.ups.modelo.Rol;
+
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 
 public class EditarUsuario extends JInternalFrame {
 
@@ -11,6 +14,8 @@ public class EditarUsuario extends JInternalFrame {
     private JComboBox cbxRol;
     private JTextField txtContraseña;
     private JPanel panelPrincipal;
+    private DefaultTableModel modelo;
+
 
     public EditarUsuario() {
         setContentPane(panelPrincipal); // Usa el panel diseñado en el .form
@@ -20,7 +25,13 @@ public class EditarUsuario extends JInternalFrame {
         setClosable(true);
         setIconifiable(true);
         setResizable(true);
-        setVisible(false);
+
+        modelo = new DefaultTableModel();
+        Object[] columnas = {"Nombre","Apellido", "Usuario", "Rol"};
+        modelo.setColumnIdentifiers(columnas);
+        cbxRol.setModel(new DefaultComboBoxModel<>(Rol.values())); // 👈 Carga los roles
+
+        tblUsuarios.setModel(modelo);
     }
 
     // Getters para acceder a los componentes desde el controlador
