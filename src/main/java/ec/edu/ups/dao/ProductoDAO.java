@@ -8,14 +8,14 @@ public interface ProductoDAO {
 
     void crear(Producto producto);
 
-    Producto buscarPorCodigo(String codigo);  // CAMBIO a String
+    Producto buscarPorCodigo(String codigo);
 
     List<Producto> buscarPorNombre(String nombre);
 
     void actualizar(Producto producto);
 
-    void eliminar(String codigo);  // CAMBIO a String
-    void eliminar(Producto producto); // ✅ Añadir esta línea
+    void eliminar(String codigo);
+    void eliminar(Producto producto);
 
 
     List<Producto> listarTodos();

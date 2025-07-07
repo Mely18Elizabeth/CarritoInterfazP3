@@ -12,7 +12,7 @@ public class EliminarCarrito extends JInternalFrame {
     private JPanel panelPrincipal;
 
     public EliminarCarrito() {
-        setContentPane(panelPrincipal); // Usa el panel generado por el .form
+        setContentPane(panelPrincipal);
         setTitle("Eliminar Carrito");
         setDefaultCloseOperation(JInternalFrame.DISPOSE_ON_CLOSE);
         setSize(600, 400);
@@ -21,8 +21,6 @@ public class EliminarCarrito extends JInternalFrame {
         setResizable(true);
         setVisible(false);
     }
-
-    // Getters para acceder a los componentes
 
     public JTextField getTextEliminar() {
         return textEliminar;

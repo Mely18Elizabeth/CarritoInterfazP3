@@ -67,7 +67,7 @@ public class ProductoController {
                 productoDAO.actualizar(producto);
 
                 JOptionPane.showMessageDialog(modificarProductoView, "Producto actualizado");
-                productoListaView.cargarDatos(productoDAO.listarTodos()); // actualiza la lista global
+                productoListaView.cargarDatos(productoDAO.listarTodos());
             } else {
                 JOptionPane.showMessageDialog(modificarProductoView, "Producto no encontrado para actualizar");
             }
@@ -81,7 +81,6 @@ public class ProductoController {
                 return;
             }
 
-            // Obtener el código del producto seleccionado
             String codigo = eliminarProductoView.getTblProductos().getValueAt(filaSeleccionada, 0).toString();
 
             int confirmacion = JOptionPane.showConfirmDialog(
@@ -97,10 +96,8 @@ public class ProductoController {
                     productoDAO.eliminar(producto);
                     JOptionPane.showMessageDialog(eliminarProductoView, "Producto eliminado correctamente.");
 
-                    // Actualizar tabla
                     eliminarProductoView.cargarProductosEnTabla(productoDAO.listarTodos());
 
-                    // Actualizar vista general
                     productoListaView.cargarDatos(productoDAO.listarTodos());
                 } else {
                     JOptionPane.showMessageDialog(eliminarProductoView, "El producto ya no existe.");
@@ -164,7 +161,7 @@ public class ProductoController {
 
     private void anadirProductoAlCarrito() {
         try {
-            String codigo = carritoAnadirView.getTxtCodigo().getText(); // ya es String
+            String codigo = carritoAnadirView.getTxtCodigo().getText();
             String nombre = carritoAnadirView.getTxtNombre().getText();
             double precio = Double.parseDouble(carritoAnadirView.getTxtPrecio().getText());
             int cantidad = Integer.parseInt(carritoAnadirView.getCbxCantidad().getSelectedItem().toString());
@@ -172,7 +169,7 @@ public class ProductoController {
             double subtotalProducto = precio * cantidad;
 
             DefaultTableModel modelo = (DefaultTableModel) carritoAnadirView.getTblProductos().getModel();
-            Object[] fila = {codigo, nombre, precio, cantidad, subtotalProducto}; // código como String
+            Object[] fila = {codigo, nombre, precio, cantidad, subtotalProducto};
             modelo.addRow(fila);
 
             actualizarTotales();
@@ -188,7 +185,7 @@ public class ProductoController {
         double subtotal = 0.0;
 
         for (int i = 0; i < modelo.getRowCount(); i++) {
-            subtotal += (double) modelo.getValueAt(i, 4); // columna de Subtotal
+            subtotal += (double) modelo.getValueAt(i, 4);
         }
 
         double iva = subtotal * 0.12;
@@ -223,25 +220,23 @@ public class ProductoController {
     }
 
     private void buscarProductoPorCodigoONombre() {
-        String textoBusqueda = carritoAnadirView.getTxtCodigo().getText().trim();  // o el campo que uses para búsqueda
+        String textoBusqueda = carritoAnadirView.getTxtCodigo().getText().trim();
 
         Producto producto = productoDAO.buscarPorCodigo(textoBusqueda);
 
         if (producto == null) {
-            // Si no encuentra por código, busca por nombre
             List<Producto> productos = productoDAO.buscarPorNombre(textoBusqueda);
             if (productos.isEmpty()) {
                 carritoAnadirView.mostrarMensaje("No se encontró el producto");
                 carritoAnadirView.getTxtNombre().setText("");
                 carritoAnadirView.getTxtPrecio().setText("");
             } else {
-                producto = productos.get(0); // Primer producto que coincida por nombre
-                carritoAnadirView.getTxtCodigo().setText(producto.getCodigo()); // si quieres actualizar el campo código
+                producto = productos.get(0);
+                carritoAnadirView.getTxtCodigo().setText(producto.getCodigo());
                 carritoAnadirView.getTxtNombre().setText(producto.getNombre());
                 carritoAnadirView.getTxtPrecio().setText(String.valueOf(producto.getPrecio()));
             }
         } else {
-            // Encontró por código
             carritoAnadirView.getTxtCodigo().setText(producto.getCodigo());
             carritoAnadirView.getTxtNombre().setText(producto.getNombre());
             carritoAnadirView.getTxtPrecio().setText(String.valueOf(producto.getPrecio()));

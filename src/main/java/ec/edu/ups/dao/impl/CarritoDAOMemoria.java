@@ -20,7 +20,7 @@ public class CarritoDAOMemoria implements CarritoDAO {
 
     public List<Carrito> buscarPorNombreUsuario(String nombreUsuario) {
         List<Carrito> resultados = new ArrayList<>();
-        for (Carrito c : carritos) { // suponiendo lista carritos
+        for (Carrito c : carritos) {
             if (c.getUsuario().getNombre().equalsIgnoreCase(nombreUsuario)) {
                 resultados.add(c);
             }
@@ -48,7 +48,7 @@ public class CarritoDAOMemoria implements CarritoDAO {
     public void actualizar(Carrito carrito) {
         for (int i = 0; i < carritos.size(); i++) {
             if (carritos.get(i).getUsuario().getNombre().equalsIgnoreCase(carrito.getUsuario().getNombre())) {
-                carritos.set(i, carrito);  // Reemplaza el carrito completo
+                carritos.set(i, carrito);
                 break;
             }
         }
@@ -60,7 +60,7 @@ public class CarritoDAOMemoria implements CarritoDAO {
             Carrito carrito = iterator.next();
             if (carrito.getUsuario().getNombre().equalsIgnoreCase(nombreUsuario)) {
                 iterator.remove();
-                break; // si solo quieres eliminar el primero
+                break;
             }
         }
     }

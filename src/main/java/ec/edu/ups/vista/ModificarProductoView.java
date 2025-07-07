@@ -15,10 +15,9 @@ public class ModificarProductoView extends JInternalFrame {
         super("Modificar Producto", true, true, true, true);
         setContentPane(panelPrincipal);
         setSize(500, 400);
-        setVisible(false); // inicialmente oculta
+        setVisible(false);
     }
 
-    // Getters para acceder desde el controlador
     public JTextField getTxtBuscar() {
         return txtBuscar;
     }

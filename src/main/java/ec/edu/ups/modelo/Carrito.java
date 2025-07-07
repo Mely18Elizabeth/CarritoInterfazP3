@@ -80,12 +80,10 @@ public class Carrito {
     public void agregarProducto(Producto producto, int cantidad) {
         for (ItemCarrito item : items) {
             if (item.getProducto().getCodigo().equals(producto.getCodigo())) {
-                // Si ya existe, sumamos la cantidad
                 item.setCantidad(item.getCantidad() + cantidad);
-                return; // Salimos, no agregamos uno nuevo
+                return;
             }
         }
-        // Si no existe, lo añadimos nuevo
         items.add(new ItemCarrito(producto, cantidad));
     }
 

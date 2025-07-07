@@ -45,7 +45,7 @@ public class UsuarioController {
 
         Usuario usuario = usuarioDAO.buscarPorUsername(username);
         DefaultTableModel modelo = (DefaultTableModel) editarUsuarioView.getTblUsuarios().getModel();
-        modelo.setRowCount(0); // Limpiar tabla
+        modelo.setRowCount(0);
 
         if (usuario != null) {
             Object[] fila = {
@@ -56,7 +56,6 @@ public class UsuarioController {
             };
             modelo.addRow(fila);
 
-            // Prellenar campos para editar
             editarUsuarioView.getTxtContraseña().setText(usuario.getContrasenia());
             editarUsuarioView.getCbxRol().setSelectedItem(usuario.getRol());
         } else {
@@ -104,7 +103,7 @@ public class UsuarioController {
 
         Usuario usuario = usuarioDAO.buscarPorUsername(username);
         DefaultTableModel modelo = (DefaultTableModel) eliminarUsuarioView.getTblUsuarios().getModel();
-        modelo.setRowCount(0); // Limpiar tabla
+        modelo.setRowCount(0);
 
         if (usuario != null) {
             Object[] fila = {
@@ -140,7 +139,7 @@ public class UsuarioController {
 
         if (confirmacion == JOptionPane.YES_OPTION) {
             usuarioDAO.eliminar(username);
-            ((DefaultTableModel) eliminarUsuarioView.getTblUsuarios().getModel()).setRowCount(0); // Limpiar tabla
+            ((DefaultTableModel) eliminarUsuarioView.getTblUsuarios().getModel()).setRowCount(0);
             JOptionPane.showMessageDialog(eliminarUsuarioView, "Usuario eliminado correctamente.");
         }
     }

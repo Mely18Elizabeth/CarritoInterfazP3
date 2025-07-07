@@ -31,13 +31,13 @@ public class CarritoController {
     public CarritoController(CarritoDAO carritoDAO,
                              ProductoDAO productoDAO,
                              CarritoAnadirView carritoAnadirView,
-                             Usuario usuarioActual) {  // <-- Agregado usuarioActual
+                             Usuario usuarioActual) {
 
         this.carritoDAO = carritoDAO;
         this.productoDAO = productoDAO;
         this.carritoAnadirView = carritoAnadirView;
         this.carrito = new Carrito();
-        this.carrito.setUsuario(usuarioActual);  // Asigna usuario al carrito
+        this.carrito.setUsuario(usuarioActual);
         configurarEventosEnVistas();
     }
 
@@ -48,7 +48,7 @@ public class CarritoController {
 
     private void cargarTablaEditar() {
         DefaultTableModel modelo = (DefaultTableModel) editarCarritoView.getTblProductos().getModel();
-        modelo.setRowCount(0); // limpiar
+        modelo.setRowCount(0);
 
         for (ItemCarrito item : carritoEditando.obtenerItems()) {
             Producto p = item.getProducto();
@@ -102,7 +102,6 @@ public class CarritoController {
         Producto productoSeleccionado = productoDAO.listarTodos().get(productoIndex);
         int cantidadSeleccionada = (int) editarCarritoView.getCbxCantidad().getSelectedItem();
 
-        // Verificar si ya existe en carrito
         ItemCarrito itemExistente = null;
         for (ItemCarrito item : carritoEditando.obtenerItems()) {
             if (item.getProducto().getCodigo().equals(productoSeleccionado.getCodigo())) {
@@ -126,10 +125,8 @@ public class CarritoController {
             carritoEditando.obtenerItems().add(new ItemCarrito(productoSeleccionado, cantidadSeleccionada));
         }
 
-        // Guardar cambios
         carritoDAO.actualizar(carritoEditando);
 
-        // Refrescar tabla y totales
         cargarTablaEditar();
         actualizarTotalesEditar();
 
@@ -153,14 +150,13 @@ public class CarritoController {
             return;
         }
 
-        carritoEditando = carritos.get(0); // asumimos uno solo por usuario
+        carritoEditando = carritos.get(0);
         cargarTablaEditar();
         actualizarTotalesEditar();
     }
 
 
     private void inicializarEditarCarritoView() {
-        // Cargar productos en el combo
         List<Producto> productos = productoDAO.listarTodos();
         DefaultComboBoxModel<String> modeloProductos = new DefaultComboBoxModel<>();
         for (Producto p : productos) {
@@ -168,25 +164,20 @@ public class CarritoController {
         }
         editarCarritoView.getTxtProductosLista().setModel(modeloProductos);
 
-        // Cantidades 1 a 20
         DefaultComboBoxModel<Integer> modeloCantidades = new DefaultComboBoxModel<>();
         for (int i = 1; i <= 20; i++) {
             modeloCantidades.addElement(i);
         }
         editarCarritoView.getCbxCantidad().setModel(modeloCantidades);
 
-        // Inicializar tabla con columnas
         String[] columnas = {"Código", "Nombre", "Cantidad", "Precio Unitario", "Subtotal"};
         DefaultTableModel modeloTabla = new DefaultTableModel(columnas, 0);
         editarCarritoView.getTblProductos().setModel(modeloTabla);
 
-        // Botón Buscar
         editarCarritoView.getBtnBuscar().addActionListener(e -> buscarCarritoParaEditar());
 
-        // Botón Guardar (agregar producto + guardar)
         editarCarritoView.getBtnGuardar().addActionListener(e -> guardarCambiosEditarCarrito());
 
-        // Botón Limpiar
     }
 
 
@@ -211,12 +202,10 @@ public class CarritoController {
         carritoDAO.crear(carrito);
         carritoAnadirView.mostrarMensaje("Carrito creado correctamente");
 
-        // Reiniciar el carrito
-        Usuario usuario = carrito.getUsuario(); // conservar usuario actual
+        Usuario usuario = carrito.getUsuario();
         carrito = new Carrito();
         carrito.setUsuario(usuario);
 
-        // Limpiar tabla
         DefaultTableModel modelo = (DefaultTableModel) carritoAnadirView.getTblProductos().getModel();
         modelo.setRowCount(0);
         mostrarTotales();
@@ -277,13 +266,13 @@ public class CarritoController {
             public void actionPerformed(ActionEvent e) {
                 List<Carrito> carritos = carritoDAO.listarTodos();
                 DefaultTableModel model = (DefaultTableModel) carritoListarView.getTblListas().getModel();
-                model.setRowCount(0); // limpiar tabla
+                model.setRowCount(0);
 
                 for (Carrito carrito : carritos) {
                     StringBuilder productosTexto = new StringBuilder();
                     for (ItemCarrito item : carrito.obtenerItems()) {
                         productosTexto.append(item.getProducto().getNombre())
-                                .append(" x").append(item.getCantidad())
+                                .append("-").append(item.getCantidad())
                                 .append(", ");
                     }
 
@@ -292,7 +281,7 @@ public class CarritoController {
                     }
 
                     model.addRow(new Object[]{
-                            carrito.getUsuario().getNombre(), // Asegúrate que getNombre() existe
+                            carrito.getUsuario().getNombre(),
                             productosTexto.toString(),
                             carrito.calcularSubtotal(),
                             carrito.calcularTotal()
@@ -309,7 +298,7 @@ public class CarritoController {
     private void listarCarritosPorUsuario(String nombreUsuario) {
         List<Carrito> carritos = carritoDAO.buscarPorNombreUsuario(nombreUsuario);
         DefaultTableModel model = (DefaultTableModel) carritoListarView.getTblListas().getModel();
-        model.setRowCount(0); // Limpiar tabla
+        model.setRowCount(0);
 
         for (Carrito carrito : carritos) {
             StringBuilder productosTexto = new StringBuilder();
@@ -320,7 +309,7 @@ public class CarritoController {
             }
 
             if (productosTexto.length() > 0) {
-                productosTexto.setLength(productosTexto.length() - 2); // Quitar última coma
+                productosTexto.setLength(productosTexto.length() - 2);
             }
 
             model.addRow(new Object[]{
@@ -346,11 +335,9 @@ public class CarritoController {
 
         Carrito carrito = carritos.get(0);
 
-        // Limpiar combo
         JComboBox<String> combo = carritoEliminarView.getListaProductos();
         combo.removeAllItems();
 
-        // Agregar productos del carrito al combo
         for (ItemCarrito item : carrito.obtenerItems()) {
             combo.addItem(item.getProducto().getNombre());
         }
@@ -359,7 +346,6 @@ public class CarritoController {
     public void setCarritoEliminarView(EliminarCarrito eliminarView) {
         this.carritoEliminarView = eliminarView;
 
-        // Evento botón Buscar
         carritoEliminarView.getBtnBuscar().addActionListener(e -> {
             String nombreUsuario = carritoEliminarView.getTextEliminar().getText().trim();
             if (nombreUsuario.isEmpty()) {
@@ -375,16 +361,13 @@ public class CarritoController {
             }
 
             Carrito carrito = carritos.get(0);
-            // Limpiar combo
             carritoEliminarView.getListaProductos().removeAllItems();
 
-            // Agregar productos del carrito al combo
             for (ItemCarrito item : carrito.obtenerItems()) {
                 carritoEliminarView.getListaProductos().addItem(item.getProducto().getNombre());
             }
         });
 
-        // Evento botón Eliminar
         carritoEliminarView.getBtnEliminar().addActionListener(e -> {
             String productoNombre = (String) carritoEliminarView.getListaProductos().getSelectedItem();
             if (productoNombre == null) {
@@ -414,10 +397,8 @@ public class CarritoController {
                 carritoDAO.actualizar(carrito);
                 JOptionPane.showMessageDialog(carritoEliminarView, "Producto eliminado del carrito");
 
-                // Actualizar combo quitando el producto eliminado
                 carritoEliminarView.getListaProductos().removeItem(productoNombre);
 
-                // Actualizar listado general si está visible
                 if (carritoListarView != null) {
                     listarCarritosPorUsuario(nombreUsuario);
                 }

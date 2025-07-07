@@ -18,10 +18,10 @@ public class RecuperarContraseñaView extends JFrame {
 
     public RecuperarContraseñaView() {
         setTitle("Recuperar Contraseña");
-        setContentPane(panelPrincipal); // ¡Esto es clave!
+        setContentPane(panelPrincipal);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        setSize(600, 400); // o pack();
-        setLocationRelativeTo(null); // Centrado
+        setSize(600, 400);
+        setLocationRelativeTo(null);
     }
 
     public JTextField getTxtNombre() {

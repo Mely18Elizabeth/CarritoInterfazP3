@@ -13,9 +13,8 @@ import java.util.List;
 public class RecuperarContraseñaController {
     private UsuarioDAO usuarioDAO;
     private RecuperarContraseñaView view;
-    private Usuario usuarioEncontrado;  // Usuario que estamos verificando
+    private Usuario usuarioEncontrado;
 
-    // Las preguntas y sus getters de Respuestas
     private final List<String> preguntas = List.of(
             "Nombre de Amigo",
             "Pasatiempo",
@@ -28,31 +27,24 @@ public class RecuperarContraseñaController {
         this.usuarioDAO = usuarioDAO;
         this.view = view;
 
-        // Al pulsar el botón "Contraseña"
         view.getBtnContraseña().addActionListener(e -> verificarRespuestas());
     }
 
-    // Mostrar 3 preguntas aleatorias
     public void cargarPreguntas() {
-        // Elegir 3 indices aleatorios sin repetir
         List<Integer> indices = new ArrayList<>(List.of(0,1,2,3,4));
         Collections.shuffle(indices);
         List<Integer> seleccionados = indices.subList(0, 3);
 
-        // Colocar preguntas en campos y guardar indices para luego validar
         view.getTxtPre1().setText(preguntas.get(seleccionados.get(0)));
         view.getTxtPre2().setText(preguntas.get(seleccionados.get(1)));
         view.getTxtPre3().setText(preguntas.get(seleccionados.get(2)));
 
-        // Guardar los indices en el cliente para validación (se puede agregar un atributo aquí)
         view.getTxtPre1().putClientProperty("indice", seleccionados.get(0));
         view.getTxtPre2().putClientProperty("indice", seleccionados.get(1));
         view.getTxtPre3().putClientProperty("indice", seleccionados.get(2));
     }
 
-    // Método que se llama al pulsar el botón para verificar
     private void verificarRespuestas() {
-        // Buscar usuario por nombre y apellido (puedes ajustar la búsqueda)
         String nombre = view.getTxtNombre().getText().trim();
         String apellido = view.getTxtApellido().getText().trim();
 
@@ -69,12 +61,10 @@ public class RecuperarContraseñaController {
             return;
         }
 
-        // Obtener respuestas ingresadas
         String res1 = view.getTxtRes1().getText().trim();
         String res2 = view.getTxtRes2().getText().trim();
         String res3 = view.getTxtRes3().getText().trim();
 
-        // Obtener las preguntas mostradas para saber qué campo verificar
         int i1 = (int) view.getTxtPre1().getClientProperty("indice");
         int i2 = (int) view.getTxtPre2().getClientProperty("indice");
         int i3 = (int) view.getTxtPre3().getClientProperty("indice");
@@ -93,7 +83,6 @@ public class RecuperarContraseñaController {
         }
     }
 
-    // Método para comparar la respuesta según el índice de la pregunta
     private boolean compararRespuestaPorIndice(Respuestas r, int indice, String respuestaIngresada) {
         switch (indice) {
             case 0: return r.getNombreAmigo().equalsIgnoreCase(respuestaIngresada);

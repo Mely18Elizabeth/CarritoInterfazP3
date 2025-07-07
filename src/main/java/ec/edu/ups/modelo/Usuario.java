@@ -4,7 +4,7 @@ public class Usuario {
     private String username;
     private String contrasenia;
     private Rol rol;
-    private Respuestas respuestas;  // Solo UNA vez
+    private Respuestas respuestas;
     private String nombre;
     private String apellido;
 

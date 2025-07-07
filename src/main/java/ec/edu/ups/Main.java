@@ -14,19 +14,16 @@ import java.awt.event.WindowEvent;
 public class Main {
     public static void main(String[] args) {
         java.awt.EventQueue.invokeLater(() -> {
-            // DAOs
             UsuarioDAO usuarioDAO = new UsuarioDAOMemoria();
             ProductoDAO productoDAO = new ProductoDAOMemoria();
             CarritoDAO carritoDAO = new CarritoDAOMemoria();
 
-            // Vistas iniciales
             LoginView loginView = new LoginView();
             RecuperarContraseñaView recuperarView = new RecuperarContraseñaView();
             CarritoAnadirView carritoAnadirView = new CarritoAnadirView();
             CarritoListar carritoListarView = new CarritoListar();
             EliminarCarrito eliminarCarritoView = new EliminarCarrito();
 
-            // Controladores iniciales
             RecuperarContraseñaController recuperarController = new RecuperarContraseñaController(usuarioDAO, recuperarView);
             UsuarioController usuarioController = new UsuarioController(usuarioDAO, loginView);
             UsuarioListaView usuarioListaView = new UsuarioListaView();
@@ -38,20 +35,16 @@ public class Main {
             usuarioController.setEditarUsuarioView(editarUsuario);
 
 
-            // Mostrar Login
             loginView.setVisible(true);
 
-            // Listener para Login cerrado
             loginView.addWindowListener(new WindowAdapter() {
                 @Override
                 public void windowClosed(WindowEvent e) {
                     Usuario usuarioAutenticado = usuarioController.getUsuarioAutenticado();
 
                     if (usuarioAutenticado != null) {
-                        // Crear vista principal
                         MenuPrincipalView principalView = new MenuPrincipalView();
 
-                        // Crear todas las vistas necesarias
                         ProductoAnadirView productoAnadirView = new ProductoAnadirView();
                         ProductoListaView productoListaView = new ProductoListaView();
                         ModificarProductoView modificarProductoView = new ModificarProductoView();
@@ -64,9 +57,6 @@ public class Main {
                         CarritoListar itemCarritoView = new CarritoListar();
                         EditarCarritoView editarCarritoView = new EditarCarritoView();
 
-
-
-                        // Controlador de producto
                         ProductoController productoController = new ProductoController(
                                 productoDAO,
                                 productoAnadirView,
@@ -76,7 +66,6 @@ public class Main {
                                 eliminarProductoView
                         );
 
-                        // ✅ Controlador de carrito con usuario autenticado
                         CarritoController carritoController = new CarritoController(
                                 carritoDAO,
                                 productoDAO,
@@ -84,22 +73,17 @@ public class Main {
                                 usuarioAutenticado
                         );
 
-                        // ✅ Establecer vista de listar carrito
                         carritoController.setCarritoListarView(itemCarritoView);
                         carritoController.setCarritoEliminarView(eliminarCarritoView);
 
-
-                        // Mostrar mensaje de bienvenida
                         principalView.mostrarMensaje("Bienvenido: " + usuarioAutenticado.getUsername());
 
-                        // Menús según rol
                         if (usuarioAutenticado.getRol().equals(Rol.ADMINISTRADOR)) {
                             principalView.getMenuItemCrearProducto().addActionListener(ev -> principalView.mostrarVentana(productoAnadirView));
                             principalView.getMenuItemActualizarProducto().addActionListener(ev -> principalView.mostrarVentana(modificarProductoView));
                             principalView.getMenuItemBuscarProducto().addActionListener(ev -> principalView.mostrarVentana(productoListaView));
                             principalView.getMenuItemEliminarProducto().addActionListener(ev -> principalView.mostrarVentana(eliminarProductoView));
 
-                            // USUARIOS
                             principalView.getMenuItemEditarUsuario().addActionListener(ev -> principalView.mostrarVentana(editarUsuario));
                             principalView.getMenuItemEliminarUsuario().addActionListener(ev -> principalView.mostrarVentana(eliminarUsuarioView));
                             principalView.getMenuItemUsuarioLista().addActionListener(ev -> principalView.mostrarVentana(usuarioListaView));
@@ -111,20 +95,15 @@ public class Main {
                             principalView.getMenuItemUsuarioLista().addActionListener(ev -> principalView.mostrarVentana(usuarioListaView));
                         }
 
-
-                        // Menú de carrito
                         principalView.getMenuItemCrearCarrito().addActionListener(ev -> principalView.mostrarVentana(carritoAnadirView));
                         principalView.getMenuItemCarrito().addActionListener(ev -> principalView.mostrarVentana(itemCarritoView));
                         principalView.getMenuItemEliminarCarrito().addActionListener(ev -> principalView.mostrarVentana(eliminarCarritoView));
                         principalView.getMenuItemModificarCarrito().addActionListener(ev -> principalView.mostrarVentana(editarCarritoView));
 
-
-                        // Idiomas
                         principalView.getMenuItemIdiomaEspanol().addActionListener(ev -> principalView.cambiarIdioma("es", "EC"));
                         principalView.getMenuItemIdiomaIngles().addActionListener(ev -> principalView.cambiarIdioma("en", "US"));
                         principalView.getMenuItemIdiomaFrances().addActionListener(ev -> principalView.cambiarIdioma("fr", "FR"));
 
-                        // Cerrar sesión
                         principalView.getMenuItemSalir().addActionListener(ev -> {
                             principalView.dispose();
                             LoginView nuevoLogin = new LoginView();
@@ -132,13 +111,11 @@ public class Main {
                             nuevoLogin.setVisible(true);
                         });
 
-                        // Mostrar principal
                         principalView.setVisible(true);
                     }
                 }
             });
 
-            // Registro de usuario
             loginView.getBtnRegistro().addActionListener(ev -> {
                 UsuarioAñadirView usuarioAñadirView = new UsuarioAñadirView();
                 final Respuestas[] respuestasGuardadas = new Respuestas[1];
@@ -188,7 +165,6 @@ public class Main {
                 usuarioAñadirView.setVisible(true);
             });
 
-            // Recuperar contraseña
             loginView.getRecuperarContraseñaButton().addActionListener(ev -> {
                 recuperarView.getTxtNombre().setText("");
                 recuperarView.getTxtApellido().setText("");

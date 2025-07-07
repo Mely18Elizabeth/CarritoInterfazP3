@@ -24,8 +24,6 @@ public class UsuarioAñadirView extends JFrame {
         setSize(500, 400);
         setLocationRelativeTo(null);
         setVisible(true);
-
-        // Cargar roles al ComboBox
         cbxRol.addItem(Rol.ADMINISTRADOR);
         cbxRol.addItem(Rol.USUARIO);
     }

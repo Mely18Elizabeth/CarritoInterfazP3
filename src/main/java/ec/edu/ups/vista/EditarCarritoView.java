@@ -17,17 +17,15 @@ public class EditarCarritoView extends JInternalFrame {
     private JTextField txtUsuario;
 
     public EditarCarritoView() {
-        setContentPane(panelPrincipal); // panel generado desde el .form
+        setContentPane(panelPrincipal);
         setTitle("Editar Carrito");
         setDefaultCloseOperation(JInternalFrame.DISPOSE_ON_CLOSE);
         setSize(700, 500);
         setClosable(true);
         setIconifiable(true);
         setResizable(true);
-        setVisible(false); // no visible por defecto
+        setVisible(false);
     }
-
-    // Getters públicos para acceder desde el controlador
 
     public JButton getBtnBuscar() {
         return btnBuscar;

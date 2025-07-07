@@ -18,7 +18,7 @@ public class EditarUsuario extends JInternalFrame {
 
 
     public EditarUsuario() {
-        setContentPane(panelPrincipal); // Usa el panel diseñado en el .form
+        setContentPane(panelPrincipal);
         setTitle("Editar Usuario");
         setDefaultCloseOperation(JInternalFrame.DISPOSE_ON_CLOSE);
         setSize(600, 400);
@@ -29,12 +29,11 @@ public class EditarUsuario extends JInternalFrame {
         modelo = new DefaultTableModel();
         Object[] columnas = {"Nombre","Apellido", "Usuario", "Rol"};
         modelo.setColumnIdentifiers(columnas);
-        cbxRol.setModel(new DefaultComboBoxModel<>(Rol.values())); // 👈 Carga los roles
+        cbxRol.setModel(new DefaultComboBoxModel<>(Rol.values()));
 
         tblUsuarios.setModel(modelo);
     }
 
-    // Getters para acceder a los componentes desde el controlador
 
     public JTextField getTxtBuscarUsuario() {
         return txtBuscarUsuario;

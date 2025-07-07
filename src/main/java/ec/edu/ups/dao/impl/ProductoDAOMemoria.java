@@ -66,7 +66,7 @@ public class ProductoDAOMemoria implements ProductoDAO {
 
     @Override
     public void eliminar(Producto producto) {
-        productos.remove(producto); // ✅ Elimina directamente el objeto Producto
+        productos.remove(producto);
     }
 
 
