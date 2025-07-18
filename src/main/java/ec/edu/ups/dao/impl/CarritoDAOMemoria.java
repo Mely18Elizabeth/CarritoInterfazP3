@@ -1,6 +1,7 @@
 package ec.edu.ups.dao.impl;
 
 import ec.edu.ups.dao.CarritoDAO;
+import ec.edu.ups.dao.UsuarioDAO;
 import ec.edu.ups.modelo.Carrito;
 import ec.edu.ups.modelo.Usuario;
 
@@ -9,6 +10,7 @@ import java.util.Iterator;
 import java.util.List;
 
 public class CarritoDAOMemoria implements CarritoDAO {
+
 
     private final List<Carrito> carritos;
     private int proximoCodigo = 1;

@@ -14,7 +14,6 @@ public class UsuarioDAOMemoria implements UsuarioDAO {
 
     public UsuarioDAOMemoria() {
         this.usuarios = new ArrayList<>();
-        // Puedes crear usuarios iniciales aquí si quieres
     }
 
     @Override

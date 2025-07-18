@@ -10,7 +10,7 @@
     </properties>
     <border type="none"/>
     <children>
-      <component id="cf7d" class="javax.swing.JLabel">
+      <component id="cf7d" class="javax.swing.JLabel" binding="lblRegistrarUsuario">
         <constraints>
           <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
@@ -30,7 +30,7 @@
         </properties>
         <border type="none"/>
         <children>
-          <component id="e8ba" class="javax.swing.JLabel">
+          <component id="e8ba" class="javax.swing.JLabel" binding="LblNombre">
             <constraints>
               <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
@@ -40,7 +40,7 @@
               <text value="Nombre:"/>
             </properties>
           </component>
-          <component id="89da7" class="javax.swing.JLabel">
+          <component id="89da7" class="javax.swing.JLabel" binding="LblCedula">
             <constraints>
               <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
@@ -72,7 +72,7 @@
               <foreground color="-13626334"/>
             </properties>
           </component>
-          <component id="ae05c" class="javax.swing.JLabel">
+          <component id="ae05c" class="javax.swing.JLabel" binding="lblApellido">
             <constraints>
               <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
@@ -93,7 +93,7 @@
               <foreground color="-13626334"/>
             </properties>
           </component>
-          <component id="98467" class="javax.swing.JLabel">
+          <component id="98467" class="javax.swing.JLabel" binding="lblRolUsuario">
             <constraints>
               <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
@@ -112,7 +112,7 @@
               <foreground color="-13626334"/>
             </properties>
           </component>
-          <component id="a7f15" class="javax.swing.JLabel">
+          <component id="a7f15" class="javax.swing.JLabel" binding="lblContraseña">
             <constraints>
               <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>

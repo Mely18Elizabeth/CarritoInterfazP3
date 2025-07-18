@@ -12,6 +12,9 @@ public class EliminarCarrito extends JInternalFrame {
     private JScrollPane tablaEliminar;
     private JComboBox listaProductos;
     private JPanel panelPrincipal;
+    private JLabel lblEliminarCarrito;
+    private JLabel lblUsuario;
+    private JLabel lblProducto;
 
     public EliminarCarrito(MensajeInternacionalizacionHandler mensajes) {
         setContentPane(panelPrincipal);

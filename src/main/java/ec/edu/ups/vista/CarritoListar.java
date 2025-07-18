@@ -9,6 +9,7 @@ public class CarritoListar extends JInternalFrame {
     private JPanel panelPrincipal;
     private JTable tblListas;
     private JButton btnListar;
+    private JLabel lbllistaCarrito;
     private DefaultTableModel modelo;
 
 

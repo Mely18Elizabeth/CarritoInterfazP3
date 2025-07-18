@@ -15,6 +15,12 @@ public class UsuarioAñadirView extends JFrame {
     private JTextField txtApellido;
     private JTextField txtContraseña;
     private JButton btnPreguntas;
+    private JLabel lblRegistrarUsuario;
+    private JLabel LblNombre;
+    private JLabel LblCedula;
+    private JLabel lblRolUsuario;
+    private JLabel lblApellido;
+    private JLabel lblContraseña;
 
 
     public UsuarioAñadirView() {

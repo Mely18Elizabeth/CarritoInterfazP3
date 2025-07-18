@@ -1,5 +1,6 @@
 package ec.edu.ups.controlador;
 
+import ec.edu.ups.dao.PreguntaDAO;
 import ec.edu.ups.dao.UsuarioDAO;
 import ec.edu.ups.modelo.Respuestas;
 import ec.edu.ups.modelo.Usuario;
@@ -11,27 +12,29 @@ import java.util.Collections;
 import java.util.List;
 
 public class RecuperarContraseñaController {
-    private UsuarioDAO usuarioDAO;
-    private RecuperarContraseñaView view;
+    private final UsuarioDAO usuarioDAO;
+    private final PreguntaDAO preguntaDAO;
+    private final RecuperarContraseñaView view;
     private Usuario usuarioEncontrado;
 
-    private final List<String> preguntas = List.of(
-            "Nombre de Amigo",
-            "Pasatiempo",
-            "Ciudad de Nacimiento",
-            "Canción Favorita",
-            "Color Favorito"
-    );
+    private List<String> preguntas;
 
-    public RecuperarContraseñaController(UsuarioDAO usuarioDAO, RecuperarContraseñaView view) {
+    public RecuperarContraseñaController(UsuarioDAO usuarioDAO, PreguntaDAO preguntaDAO, RecuperarContraseñaView view) {
         this.usuarioDAO = usuarioDAO;
+        this.preguntaDAO = preguntaDAO;
         this.view = view;
+
+        // Obtener las preguntas desde el DAO
+        this.preguntas = preguntaDAO.obtenerTodasLasPreguntas();
 
         view.getRecuperarContraseñaButton().addActionListener(e -> verificarRespuestas());
     }
 
     public void cargarPreguntas() {
-        List<Integer> indices = new ArrayList<>(List.of(0,1,2,3,4));
+        List<Integer> indices = new ArrayList<>();
+        for (int i = 0; i < preguntas.size(); i++) {
+            indices.add(i);
+        }
         Collections.shuffle(indices);
         List<Integer> seleccionados = indices.subList(0, 3);
 

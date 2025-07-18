@@ -2,6 +2,7 @@ package ec.edu.ups;
 
 import ec.edu.ups.controlador.*;
 import ec.edu.ups.dao.*;
+import ec.edu.ups.dao.TipoPersistencia;
 import ec.edu.ups.dao.impl.*;
 import ec.edu.ups.modelo.*;
 import ec.edu.ups.util.MensajeInternacionalizacionHandler;
@@ -19,6 +20,7 @@ public class Main {
             UsuarioDAO usuarioDAO = new UsuarioDAOMemoria();
             ProductoDAO productoDAO = new ProductoDAOMemoria();
             CarritoDAO carritoDAO = new CarritoDAOMemoria();
+            PreguntaDAO preguntaDAO = new PreguntaDAOMemoria();
 
             // Vistas iniciales
             MensajeInternacionalizacionHandler mensajes = new MensajeInternacionalizacionHandler("es", "EC");
@@ -29,7 +31,7 @@ public class Main {
             CarritoAnadirView carritoAnadirView = new CarritoAnadirView(mensajes);
 
             // Controladores
-            RecuperarContraseñaController recuperarController = new RecuperarContraseñaController(usuarioDAO, recuperarView);
+            RecuperarContraseñaController recuperarController = new RecuperarContraseñaController(usuarioDAO, preguntaDAO, recuperarView);
             UsuarioController usuarioController = new UsuarioController(usuarioDAO, loginView);
 
             // Vistas adicionales de usuario
@@ -127,7 +129,21 @@ public class Main {
                 }
             });
 
-            // Acción para registrar usuario
+            loginView.getBtnTipoGuardado().addActionListener(ev -> {
+                ArchivoView archivoView = new ArchivoView(loginView, true); // modal, con loginView como padre
+                archivoView.setVisible(true);
+
+                // Luego de cerrar el diálogo modal:
+                TipoPersistencia tipo = archivoView.getTipoSeleccionado();
+                String ruta = archivoView.getRutaSeleccionada();
+
+                System.out.println("Tipo seleccionado: " + tipo);
+                System.out.println("Ruta seleccionada: " + ruta);
+
+                // Aquí puedes guardar esta configuración o usarla para cambiar la persistencia
+            });
+
+
             loginView.getBtnRegistro().addActionListener(ev -> {
                 UsuarioAñadirView usuarioAñadirView = new UsuarioAñadirView();
                 final Respuestas[] respuestasGuardadas = new Respuestas[1];

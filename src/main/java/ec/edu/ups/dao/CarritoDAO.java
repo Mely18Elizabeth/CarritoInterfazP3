@@ -16,6 +16,4 @@ public interface CarritoDAO {
     List<Carrito> buscarPorNombreUsuario(String nombreUsuario);
     void eliminarPorNombreUsuario(String nombreUsuario);
 
-
-
 }

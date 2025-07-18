@@ -17,6 +17,7 @@ public class LoginView extends JFrame {
     private JLabel lblCedula;
     private JLabel lblContraseña;
     private JLabel lblIdioma;
+    private JButton btnTipoGuardado;
 
     private MensajeInternacionalizacionHandler mensajes;
 
@@ -70,6 +71,10 @@ public class LoginView extends JFrame {
         return btnRegistro;
     }
 
+    public JButton getBtnTipoGuardado() {
+        return btnTipoGuardado;
+    }
+
     public void setBtnRegistro(JButton btnRegistro) {
         this.btnRegistro = btnRegistro;
     }
@@ -101,8 +106,5 @@ public class LoginView extends JFrame {
     public void mostrarMensaje(String mensaje) {
         JOptionPane.showMessageDialog(this, mensaje);
     }
-
-
-
 
 }

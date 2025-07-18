@@ -10,6 +10,10 @@ public class ModificarProductoView extends JInternalFrame {
     private JTextField txtNombre;
     private JTextField txtPrecio;
     private JButton btnActualizar;
+    private JLabel lblModificarProducto;
+    private JLabel lblCodigo;
+    private JLabel lblNombre;
+    private JLabel lblPrecio;
 
     public ModificarProductoView() {
         super("Modificar Producto", true, true, true, true);

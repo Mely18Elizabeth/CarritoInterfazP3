@@ -14,6 +14,8 @@ public class EliminarProductoView extends JInternalFrame {
     private JTable tblProductos;
     private JPanel panelPrincipal;
     private JScrollPane tablaEliminar;
+    private JLabel lblEliminarProducto;
+    private JLabel lblBuscar;
     private DefaultTableModel modelo;
 
     public EliminarProductoView() {

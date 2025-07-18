@@ -262,7 +262,10 @@ public class MenuPrincipalView extends JFrame {
         menuItemIdiomaFrances.setText(mensajeInternacionalizacionHandler.get("menu.idioma.fr"));
 
         menuItemSalir.setText(mensajeInternacionalizacionHandler.get("menu.salir.salir"));
+
+
     }
+
 
     public void mostrarVentana(JInternalFrame ventana) {
         if (!ventana.isVisible()) {

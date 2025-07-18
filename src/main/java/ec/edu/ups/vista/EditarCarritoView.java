@@ -15,6 +15,13 @@ public class EditarCarritoView extends JInternalFrame {
     private JComboBox<String> txtProductosLista;
     private JComboBox<Integer> cbxCantidad;
     private JTextField txtUsuario;
+    private JLabel lblDatosDeProducto;
+    private JLabel lblUsuario;
+    private JLabel lblProducto;
+    private JLabel lblCantidad;
+    private JLabel lblSubTotal;
+    private JLabel lblIva;
+    private JLabel lblTotal;
 
     public EditarCarritoView() {
         setContentPane(panelPrincipal);

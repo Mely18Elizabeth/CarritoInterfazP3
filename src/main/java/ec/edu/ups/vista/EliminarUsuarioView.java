@@ -12,6 +12,8 @@ public class EliminarUsuarioView extends JInternalFrame {
     private JButton btnBuscar;
     private JButton btnEliminar;
     private JTable tblUsuarios;
+    private JLabel lblEliminarUsuario;
+    private JLabel lblBuscar;
     private DefaultTableModel modelo;
 
 

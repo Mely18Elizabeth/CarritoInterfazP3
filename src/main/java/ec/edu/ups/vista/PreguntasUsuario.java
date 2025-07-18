@@ -17,6 +17,16 @@ public class PreguntasUsuario extends JFrame {
     private JTextField txtAño;
 
     private JButton btnGuardar;
+    private JLabel lblPreguntasUsuario;
+    private JLabel lblCiudad;
+    private JLabel lblNombreAmigo;
+    private JLabel lblPasatiempo;
+    private JLabel lblFechaNacimiento;
+    private JLabel lblDia;
+    private JLabel lblMes;
+    private JLabel lblAño;
+    private JLabel lblCancion;
+    private JLabel lblColor;
 
     public PreguntasUsuario() {
         setTitle("Preguntas personales");

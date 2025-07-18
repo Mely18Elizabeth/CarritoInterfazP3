@@ -14,6 +14,10 @@ public class EditarUsuario extends JInternalFrame {
     private JComboBox cbxRol;
     private JTextField txtContraseña;
     private JPanel panelPrincipal;
+    private JLabel lblEditarUsuario;
+    private JLabel lblUsuario;
+    private JLabel lblRolUsuario;
+    private JLabel lblContraseña;
     private DefaultTableModel modelo;
 
 

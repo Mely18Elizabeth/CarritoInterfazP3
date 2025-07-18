@@ -17,6 +17,12 @@ public class RecuperarContraseñaView extends JFrame {
     private JTextField txtPre3;
     private JTextArea textAreaContraseña;
     private JButton recuperarContraseñaButton;
+    private JLabel lblRecuperarContraseña;
+    private JLabel lblNombre;
+    private JLabel lblApellido;
+    private JLabel lblPregunta1;
+    private JLabel lblPregunta2;
+    private JLabel lblPregunta3;
 
     public RecuperarContraseñaView(MensajeInternacionalizacionHandler mensajes) {
         setTitle("Recuperar Contraseña");
