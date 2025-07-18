@@ -8,8 +8,8 @@ import javax.swing.table.DefaultTableModel;
 public class EditarUsuario extends JInternalFrame {
 
     private JTextField txtBuscarUsuario;
-    private JButton btnBuscar;
-    private JTable tblUsuarios;
+    private JButton btnBuscarEditar;
+    private JTable tblUsuariosEditar;
     private JButton btnActualizar;
     private JComboBox cbxRol;
     private JTextField txtContraseña;
@@ -31,7 +31,7 @@ public class EditarUsuario extends JInternalFrame {
         modelo.setColumnIdentifiers(columnas);
         cbxRol.setModel(new DefaultComboBoxModel<>(Rol.values()));
 
-        tblUsuarios.setModel(modelo);
+        tblUsuariosEditar.setModel(modelo);
     }
 
 
@@ -40,11 +40,11 @@ public class EditarUsuario extends JInternalFrame {
     }
 
     public JButton getBtnBuscar() {
-        return btnBuscar;
+        return btnBuscarEditar;
     }
 
     public JTable getTblUsuarios() {
-        return tblUsuarios;
+        return tblUsuariosEditar;
     }
 
     public JButton getBtnActualizar() {

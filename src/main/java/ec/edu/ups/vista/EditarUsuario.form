@@ -57,7 +57,7 @@
               <foreground color="-13626334"/>
             </properties>
           </component>
-          <component id="c0541" class="javax.swing.JButton" binding="btnBuscar">
+          <component id="c0541" class="javax.swing.JButton" binding="btnBuscarEditar">
             <constraints>
               <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
@@ -76,7 +76,7 @@
             </properties>
             <border type="none"/>
             <children>
-              <component id="ea6c1" class="javax.swing.JTable" binding="tblUsuarios">
+              <component id="ea6c1" class="javax.swing.JTable" binding="tblUsuariosEditar">
                 <constraints/>
                 <properties>
                   <background color="-3241839"/>

@@ -27,7 +27,7 @@ public class RecuperarContraseñaController {
         this.usuarioDAO = usuarioDAO;
         this.view = view;
 
-        view.getBtnContraseña().addActionListener(e -> verificarRespuestas());
+        view.getRecuperarContraseñaButton().addActionListener(e -> verificarRespuestas());
     }
 
     public void cargarPreguntas() {

@@ -28,66 +28,6 @@ public class UsuarioController {
         this.usuario = null;
         configurarEventosEnVistas();
     }
-
-    public void setEditarUsuarioView(EditarUsuario editarUsuarioView) {
-        this.editarUsuarioView = editarUsuarioView;
-
-        editarUsuarioView.getBtnBuscar().addActionListener(e -> buscarUsuarioParaEditar());
-        editarUsuarioView.getBtnActualizar().addActionListener(e -> actualizarUsuario());
-    }
-
-    private void buscarUsuarioParaEditar() {
-        String username = editarUsuarioView.getTxtBuscarUsuario().getText().trim();
-        if (username.isEmpty()) {
-            JOptionPane.showMessageDialog(editarUsuarioView, "Ingrese un nombre de usuario.");
-            return;
-        }
-
-        Usuario usuario = usuarioDAO.buscarPorUsername(username);
-        DefaultTableModel modelo = (DefaultTableModel) editarUsuarioView.getTblUsuarios().getModel();
-        modelo.setRowCount(0);
-
-        if (usuario != null) {
-            Object[] fila = {
-                    usuario.getNombre(),
-                    usuario.getApellido(),
-                    usuario.getUsername(),
-                    usuario.getRol().name()
-            };
-            modelo.addRow(fila);
-
-            editarUsuarioView.getTxtContraseña().setText(usuario.getContrasenia());
-            editarUsuarioView.getCbxRol().setSelectedItem(usuario.getRol());
-        } else {
-            JOptionPane.showMessageDialog(editarUsuarioView, "Usuario no encontrado.");
-        }
-    }
-
-    private void actualizarUsuario() {
-        String username = editarUsuarioView.getTxtBuscarUsuario().getText().trim();
-        String nuevaContrasena = editarUsuarioView.getTxtContraseña().getText().trim();
-        Rol nuevoRol = (Rol) editarUsuarioView.getCbxRol().getSelectedItem();
-
-        if (username.isEmpty() || nuevaContrasena.isEmpty()) {
-            JOptionPane.showMessageDialog(editarUsuarioView, "Todos los campos deben estar llenos.");
-            return;
-        }
-
-        Usuario usuario = usuarioDAO.buscarPorUsername(username);
-        if (usuario == null) {
-            JOptionPane.showMessageDialog(editarUsuarioView, "Usuario no encontrado.");
-            return;
-        }
-
-        usuario.setContrasenia(nuevaContrasena);
-        usuario.setRol(nuevoRol);
-        usuarioDAO.actualizar(usuario);
-
-        JOptionPane.showMessageDialog(editarUsuarioView, "Usuario actualizado correctamente.");
-        ((DefaultTableModel) editarUsuarioView.getTblUsuarios().getModel()).setRowCount(0);
-    }
-
-
     public void setEliminarUsuarioView(EliminarUsuarioView eliminarUsuarioView) {
         this.eliminarUsuarioView = eliminarUsuarioView;
 
@@ -219,4 +159,73 @@ public class UsuarioController {
 
         usuarioListaView.getTblUsuarios().setModel(modelo);
     }
+
+
+    public void setEditarUsuarioView(EditarUsuario editarUsuarioView) {
+        this.editarUsuarioView = editarUsuarioView;
+
+        editarUsuarioView.getBtnBuscar().addActionListener(e -> buscarUsuarioParaEditar());
+        editarUsuarioView.getBtnActualizar().addActionListener(e -> actualizarUsuario());
+    }
+
+    private void buscarUsuarioParaEditar() {
+        String username = editarUsuarioView.getTxtBuscarUsuario().getText().trim();
+        if (username.isEmpty()) {
+            JOptionPane.showMessageDialog(editarUsuarioView, "Ingrese un nombre de usuario para buscar.");
+            return;
+        }
+
+        Usuario usuario = usuarioDAO.buscarPorUsername(username);
+
+        DefaultTableModel modelo = (DefaultTableModel) editarUsuarioView.getTblUsuarios().getModel();
+        modelo.setRowCount(0); // limpiar tabla
+
+        if (usuario != null) {
+            Object[] fila = {
+                    usuario.getNombre(),
+                    usuario.getApellido(),
+                    usuario.getUsername(),
+                    usuario.getRol().name()
+            };
+            modelo.addRow(fila);
+
+            // Opcional: llenar los campos de contraseña y rol con los datos actuales
+            editarUsuarioView.getTxtContraseña().setText(usuario.getContrasenia());
+            editarUsuarioView.getCbxRol().setSelectedItem(usuario.getRol());
+
+        } else {
+            JOptionPane.showMessageDialog(editarUsuarioView, "Usuario no encontrado.");
+        }
+    }
+
+    private void actualizarUsuario() {
+        String username = editarUsuarioView.getTxtBuscarUsuario().getText().trim();
+        String nuevaContrasena = editarUsuarioView.getTxtContraseña().getText().trim();
+        Rol nuevoRol = (Rol) editarUsuarioView.getCbxRol().getSelectedItem();
+
+        if (username.isEmpty() || nuevaContrasena.isEmpty()) {
+            JOptionPane.showMessageDialog(editarUsuarioView, "Todos los campos deben estar llenos.");
+            return;
+        }
+
+        Usuario usuario = usuarioDAO.buscarPorUsername(username);
+        if (usuario == null) {
+            JOptionPane.showMessageDialog(editarUsuarioView, "Usuario no encontrado.");
+            return;
+        }
+
+        usuario.setContrasenia(nuevaContrasena);
+        usuario.setRol(nuevoRol);
+        usuarioDAO.actualizar(usuario);
+
+        JOptionPane.showMessageDialog(editarUsuarioView, "Usuario actualizado correctamente.");
+
+        // Limpiar tabla y campos
+        DefaultTableModel modelo = (DefaultTableModel) editarUsuarioView.getTblUsuarios().getModel();
+        modelo.setRowCount(0);
+        editarUsuarioView.getTxtBuscarUsuario().setText("");
+        editarUsuarioView.getTxtContraseña().setText("");
+        editarUsuarioView.getCbxRol().setSelectedIndex(0);
+    }
+
 }

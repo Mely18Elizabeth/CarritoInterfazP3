@@ -1,5 +1,7 @@
 package ec.edu.ups.vista;
 
+import ec.edu.ups.util.MensajeInternacionalizacionHandler;
+
 import javax.swing.*;
 
 public class LoginView extends JFrame {
@@ -11,13 +13,24 @@ public class LoginView extends JFrame {
     private JButton recuperarContraseñaButton;
     private JComboBox comboBoxIdioma;
     private JButton btnRegistro;
+    private JLabel labelSesion;
+    private JLabel lblCedula;
+    private JLabel lblContraseña;
+    private JLabel lblIdioma;
 
-    public LoginView() {
+    private MensajeInternacionalizacionHandler mensajes;
+
+    public LoginView(MensajeInternacionalizacionHandler mensajes) {
+        this.mensajes = mensajes;
         setContentPane(panelPrincipal);
         setTitle("Iniciar Sesión");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(600, 400);
         setLocationRelativeTo(null);
+
+        comboBoxIdioma.addItem("Español");
+        comboBoxIdioma.addItem("Inglés");
+        comboBoxIdioma.addItem("Francés");
     }
 
 
@@ -88,5 +101,8 @@ public class LoginView extends JFrame {
     public void mostrarMensaje(String mensaje) {
         JOptionPane.showMessageDialog(this, mensaje);
     }
+
+
+
 
 }

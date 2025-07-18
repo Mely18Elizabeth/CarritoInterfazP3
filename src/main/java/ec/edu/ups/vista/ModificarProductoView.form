@@ -37,7 +37,7 @@
             <properties>
               <font name="Baskerville Old Face" size="16"/>
               <foreground color="-17199"/>
-              <text value="Buscar:"/>
+              <text value="Codigo: "/>
             </properties>
           </component>
           <component id="b2d0b" class="javax.swing.JTextField" binding="txtBuscar">

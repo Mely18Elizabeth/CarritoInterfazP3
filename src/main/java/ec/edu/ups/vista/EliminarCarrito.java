@@ -1,5 +1,7 @@
 package ec.edu.ups.vista;
 
+import ec.edu.ups.util.MensajeInternacionalizacionHandler;
+
 import javax.swing.*;
 
 public class EliminarCarrito extends JInternalFrame {
@@ -11,7 +13,7 @@ public class EliminarCarrito extends JInternalFrame {
     private JComboBox listaProductos;
     private JPanel panelPrincipal;
 
-    public EliminarCarrito() {
+    public EliminarCarrito(MensajeInternacionalizacionHandler mensajes) {
         setContentPane(panelPrincipal);
         setTitle("Eliminar Carrito");
         setDefaultCloseOperation(JInternalFrame.DISPOSE_ON_CLOSE);

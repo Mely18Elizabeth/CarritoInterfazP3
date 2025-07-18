@@ -10,12 +10,43 @@ import java.util.List;
 
 public class CarritoDAOMemoria implements CarritoDAO {
 
-    private List<Carrito> carritos;
-
-
+    private final List<Carrito> carritos;
+    private int proximoCodigo = 1;
 
     public CarritoDAOMemoria() {
-        this.carritos = new ArrayList<Carrito>();
+        this.carritos = new ArrayList<>();
+    }
+
+    @Override
+    public void crear(Carrito carrito) {
+        carrito.setCodigo(proximoCodigo++);
+        carritos.add(carrito);
+    }
+
+    @Override
+    public void actualizar(Carrito carrito) {
+        for (int i = 0; i < carritos.size(); i++) {
+            if (carritos.get(i).getCodigo() == carrito.getCodigo()) {
+                carritos.set(i, carrito);
+                return;
+            }
+        }
+    }
+
+    @Override
+    public List<Carrito> listarTodos() {
+        return new ArrayList<>(carritos);
+    }
+
+    @Override
+    public void eliminarPorNombreUsuario(String nombreUsuario) {
+        Iterator<Carrito> iterator = carritos.iterator();
+        while (iterator.hasNext()) {
+            Carrito carrito = iterator.next();
+            if (carrito.getUsuario().getNombre().equalsIgnoreCase(nombreUsuario)) {
+                iterator.remove();
+            }
+        }
     }
 
     public List<Carrito> buscarPorNombreUsuario(String nombreUsuario) {
@@ -26,60 +57,6 @@ public class CarritoDAOMemoria implements CarritoDAO {
             }
         }
         return resultados;
-    }
-
-
-    @Override
-    public void crear(Carrito carrito) {
-        carritos.add(carrito);
-    }
-
-    @Override
-    public Carrito buscarPorCodigo(int codigo) {
-        for (Carrito carrito : carritos) {
-            if (carrito.getCodigo() == codigo) {
-                return carrito;
-            }
-        }
-        return null;
-    }
-
-    @Override
-    public void actualizar(Carrito carrito) {
-        for (int i = 0; i < carritos.size(); i++) {
-            if (carritos.get(i).getUsuario().getNombre().equalsIgnoreCase(carrito.getUsuario().getNombre())) {
-                carritos.set(i, carrito);
-                break;
-            }
-        }
-    }
-
-    public void eliminarPorNombreUsuario(String nombreUsuario) {
-        Iterator<Carrito> iterator = carritos.iterator();
-        while (iterator.hasNext()) {
-            Carrito carrito = iterator.next();
-            if (carrito.getUsuario().getNombre().equalsIgnoreCase(nombreUsuario)) {
-                iterator.remove();
-                break;
-            }
-        }
-    }
-
-
-    @Override
-    public List<Carrito> listarTodos() {
-        return carritos;
-    }
-
-    @Override
-    public List<Carrito> listarPorUsuario(Usuario usuario) {
-        List<Carrito> resultado = new ArrayList<>();
-        for (Carrito c : carritos) {
-            if (c.getUsuario().equals(usuario)) {
-                resultado.add(c);
-            }
-        }
-        return resultado;
     }
 
 }

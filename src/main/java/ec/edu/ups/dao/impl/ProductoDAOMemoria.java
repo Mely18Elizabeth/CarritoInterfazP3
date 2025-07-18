@@ -61,13 +61,11 @@ public class ProductoDAOMemoria implements ProductoDAO {
 
     @Override
     public List<Producto> listarTodos() {
-        return productos;
+        return new ArrayList<>(productos);
     }
 
     @Override
     public void eliminar(Producto producto) {
         productos.remove(producto);
     }
-
-
 }

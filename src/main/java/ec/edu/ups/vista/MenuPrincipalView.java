@@ -1,8 +1,10 @@
 package ec.edu.ups.vista;
 
 import ec.edu.ups.util.MensajeInternacionalizacionHandler;
+import ec.edu.ups.modelo.Rol; // Import Rol enum
 
 import javax.swing.*;
+import java.awt.*;
 
 public class MenuPrincipalView extends JFrame {
 
@@ -165,7 +167,6 @@ public class MenuPrincipalView extends JFrame {
         return jDesktopPane;
     }
 
-
     public JMenuItem getMenuItemEditarUsuario() {
         return menuItemEditarUsuario;
     }
@@ -174,19 +175,62 @@ public class MenuPrincipalView extends JFrame {
         JOptionPane.showMessageDialog(this, mensaje);
     }
 
-    public void deshabilitarMenusAdministrador() {
-        getMenuItemCrearProducto().setEnabled(false);
-        getMenuItemActualizarProducto().setEnabled(false);
-        getMenuItemEliminarProducto().setEnabled(false);
+    public void configureMenusForRole(Rol role) {
+        menuItemCrearProducto.setEnabled(true);
+        menuItemActualizarProducto.setEnabled(true);
+        menuItemEliminarProducto.setEnabled(true);
+        menuItemBuscarProducto.setEnabled(true);
 
-        getMenuItemEliminarUsuario().setEnabled(false);
-        getMenuItemEditarUsuario().setEnabled(false);
+        menuItemEliminarUsuario.setEnabled(true);
+        menuItemUsuarioLista.setEnabled(true);
+        menuItemEditarUsuario.setEnabled(true);
 
-        getMenuItemEliminarCarrito().setEnabled(false);
-        getMenuItemModificarCarrito().setEnabled(false);
+        menuItemEliminarCarrito.setEnabled(true);
+        menuItemModificarCarrito.setEnabled(true);
+        menuItemCrearCarrito.setEnabled(true);
+        menuItemCarrito.setEnabled(true);
 
+        menuItemIdiomaEspanol.setEnabled(true);
+        menuItemIdiomaIngles.setEnabled(true);
+        menuItemIdiomaFrances.setEnabled(true);
+        menuItemSalir.setEnabled(true);
+
+        if (role.equals(Rol.ADMINISTRADOR)) {
+            menuItemCrearProducto.setEnabled(true);
+            menuItemActualizarProducto.setEnabled(true);
+            menuItemEliminarProducto.setEnabled(true);
+            menuItemBuscarProducto.setEnabled(true);
+
+            menuItemEliminarUsuario.setEnabled(true);
+            menuItemUsuarioLista.setEnabled(true);
+            menuItemEditarUsuario.setEnabled(true);
+
+            menuItemEliminarCarrito.setEnabled(true);
+            menuItemModificarCarrito.setEnabled(true);
+            menuItemCrearCarrito.setEnabled(true);
+            menuItemCarrito.setEnabled(true);
+
+        } else if (role.equals(Rol.USUARIO)) {
+            menuItemCrearProducto.setEnabled(true);
+            menuItemBuscarProducto.setEnabled(true);
+
+            menuItemUsuarioLista.setEnabled(true);
+            menuItemEditarUsuario.setEnabled(true);
+
+            menuItemEliminarCarrito.setEnabled(true);
+            menuItemModificarCarrito.setEnabled(true);
+            menuItemCrearCarrito.setEnabled(true);
+            menuItemCarrito.setEnabled(true);
+        }
     }
 
+    public void deshabilitarMenusAdministrador() {
+        menuItemCrearProducto.setEnabled(false);
+        menuItemActualizarProducto.setEnabled(false);
+        menuItemEliminarProducto.setEnabled(false);
+        menuItemEliminarUsuario.setEnabled(false);
+        menuItemEditarUsuario.setEnabled(false);
+    }
 
     public void cambiarIdioma(String lenguaje, String pais) {
         mensajeInternacionalizacionHandler.setLenguaje(lenguaje, pais);
@@ -209,7 +253,6 @@ public class MenuPrincipalView extends JFrame {
         menuItemEliminarCarrito.setText(mensajeInternacionalizacionHandler.get("menu.carrito.eliminar"));
         menuItemModificarCarrito.setText(mensajeInternacionalizacionHandler.get("menu.carrito.actualizar"));
 
-
         menuItemEliminarUsuario.setText(mensajeInternacionalizacionHandler.get("menu.usuario.eliminar"));
         menuItemUsuarioLista.setText(mensajeInternacionalizacionHandler.get("menu.usuario.lista"));
         menuItemEditarUsuario.setText(mensajeInternacionalizacionHandler.get("menu.usuario.editar"));
@@ -220,6 +263,7 @@ public class MenuPrincipalView extends JFrame {
 
         menuItemSalir.setText(mensajeInternacionalizacionHandler.get("menu.salir.salir"));
     }
+
     public void mostrarVentana(JInternalFrame ventana) {
         if (!ventana.isVisible()) {
             jDesktopPane.add(ventana);
@@ -232,5 +276,4 @@ public class MenuPrincipalView extends JFrame {
             e.printStackTrace();
         }
     }
-
 }

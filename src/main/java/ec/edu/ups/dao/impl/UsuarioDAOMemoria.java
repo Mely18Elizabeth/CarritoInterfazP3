@@ -13,8 +13,8 @@ public class UsuarioDAOMemoria implements UsuarioDAO {
     private List<Usuario> usuarios;
 
     public UsuarioDAOMemoria() {
-        usuarios = new ArrayList<>();
-
+        this.usuarios = new ArrayList<>();
+        // Puedes crear usuarios iniciales aquí si quieres
     }
 
     @Override
@@ -44,6 +44,18 @@ public class UsuarioDAOMemoria implements UsuarioDAO {
     }
 
     @Override
+    public Usuario buscarPorNombreApellido(String nombre, String apellido) {
+        for (Usuario u : usuarios) {
+            if (u.getNombre().equalsIgnoreCase(nombre) && u.getApellido().equalsIgnoreCase(apellido)) {
+                return u;
+            }
+        }
+        return null;
+    }
+
+
+
+    @Override
     public void eliminar(String username) {
         Iterator<Usuario> iterator = usuarios.iterator();
         while (iterator.hasNext()) {
@@ -58,8 +70,7 @@ public class UsuarioDAOMemoria implements UsuarioDAO {
     @Override
     public void actualizar(Usuario usuario) {
         for (int i = 0; i < usuarios.size(); i++) {
-            Usuario usuarioAux = usuarios.get(i);
-            if (usuarioAux.getUsername().equals(usuario.getUsername())) {
+            if (usuarios.get(i).getUsername().equals(usuario.getUsername())) {
                 usuarios.set(i, usuario);
                 break;
             }
@@ -68,27 +79,7 @@ public class UsuarioDAOMemoria implements UsuarioDAO {
 
     @Override
     public List<Usuario> listarTodos() {
-        return usuarios;
-    }
-
-    @Override
-    public List<Usuario> listarPorRol(Rol rol) {
-        List<Usuario> usuariosEncontrados = new ArrayList<>();
-        for (Usuario usuario : usuarios) {
-            if (usuario.getRol().equals(rol)) {
-                usuariosEncontrados.add(usuario);
-            }
-        }
-        return usuariosEncontrados;
-    }
-
-    public Usuario buscarPorNombreApellido(String nombre, String apellido) {
-        for (Usuario u : usuarios) {
-            if (u.getNombre().equalsIgnoreCase(nombre) && u.getApellido().equalsIgnoreCase(apellido)) {
-                return u;
-            }
-        }
-        return null;
+        return new ArrayList<>(usuarios);
     }
 
 }

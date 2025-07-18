@@ -1,5 +1,7 @@
 package ec.edu.ups.vista;
 
+import ec.edu.ups.util.MensajeInternacionalizacionHandler;
+
 import javax.swing.*;
 
 public class RecuperarContraseñaView extends JFrame {
@@ -16,12 +18,16 @@ public class RecuperarContraseñaView extends JFrame {
     private JTextArea textAreaContraseña;
     private JButton recuperarContraseñaButton;
 
-    public RecuperarContraseñaView() {
+    public RecuperarContraseñaView(MensajeInternacionalizacionHandler mensajes) {
         setTitle("Recuperar Contraseña");
         setContentPane(panelPrincipal);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setSize(600, 400);
         setLocationRelativeTo(null);
+    }
+
+    public JPanel getPanelPrincipal() {
+        return panelPrincipal;
     }
 
     public JTextField getTxtNombre() {
@@ -60,7 +66,7 @@ public class RecuperarContraseñaView extends JFrame {
         return textAreaContraseña;
     }
 
-    public JButton getBtnContraseña() {
+    public JButton getRecuperarContraseñaButton() {
         return recuperarContraseñaButton;
     }
 }

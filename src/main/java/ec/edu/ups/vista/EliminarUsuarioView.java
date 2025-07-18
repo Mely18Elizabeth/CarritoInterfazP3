@@ -1,5 +1,7 @@
 package ec.edu.ups.vista;
 
+import ec.edu.ups.util.MensajeInternacionalizacionHandler;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
@@ -13,7 +15,7 @@ public class EliminarUsuarioView extends JInternalFrame {
     private DefaultTableModel modelo;
 
 
-    public EliminarUsuarioView() {
+    public EliminarUsuarioView(MensajeInternacionalizacionHandler mensajes) {
         super("Lista de Usuarios", true, true, true, true);
         setDefaultCloseOperation(JInternalFrame.DISPOSE_ON_CLOSE);
 

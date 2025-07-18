@@ -47,7 +47,7 @@
             <properties>
               <font name="Baskerville Old Face" size="16"/>
               <foreground color="-17199"/>
-              <text value="Usuario: "/>
+              <text value="Cedula"/>
             </properties>
           </component>
           <component id="99331" class="javax.swing.JTextField" binding="txtNombre">

@@ -1,5 +1,7 @@
 package ec.edu.ups.vista;
 
+import ec.edu.ups.util.MensajeInternacionalizacionHandler;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
@@ -17,8 +19,16 @@ public class CarritoAnadirView extends JInternalFrame {
     private JButton btnLimpiar;
     private JComboBox cbxCantidad;
     private JPanel panelPrincipal;
+    private JLabel lblTituloCarrito;
+    private JLabel lblcodigo;
+    private JLabel lblNombre;
+    private JLabel lblPrecio;
+    private JLabel LblCantidad;
+    private JLabel lblSubTotal;
+    private JLabel lblIva;
+    private JLabel lblTotal;
 
-    public CarritoAnadirView(){
+    public CarritoAnadirView(MensajeInternacionalizacionHandler mensajes){
 
         super("Carrito de Compras", true, true, false, true);
         setContentPane(panelPrincipal);
@@ -96,4 +106,23 @@ public class CarritoAnadirView extends JInternalFrame {
     public void mostrarMensaje(String mensaje) {
         JOptionPane.showMessageDialog(this, mensaje);
     }
+
+    private void actualizarTextos(MensajeInternacionalizacionHandler mensajes) {
+        setTitle(mensajes.get("carrito.titulo"));
+
+        btnBuscar.setText(mensajes.get("carrito.btn.buscar"));
+        btnAnadir.setText(mensajes.get("carrito.btn.anadir"));
+        btnGuardar.setText(mensajes.get("carrito.btn.guardar"));
+        btnLimpiar.setText(mensajes.get("carrito.btn.limpiar"));
+
+        lblTituloCarrito.setText(mensajes.get("carrito.titulo"));  // si quieres repetir título en etiqueta
+        lblcodigo.setText(mensajes.get("carrito.lbl.codigo"));
+        lblNombre.setText(mensajes.get("carrito.lbl.nombre"));
+        lblPrecio.setText(mensajes.get("carrito.lbl.precio"));
+        LblCantidad.setText(mensajes.get("carrito.lbl.cantidad"));
+        lblSubTotal.setText(mensajes.get("carrito.lbl.subtotal"));
+        lblIva.setText(mensajes.get("carrito.lbl.iva"));
+        lblTotal.setText(mensajes.get("carrito.lbl.total"));
+    }
+
 }

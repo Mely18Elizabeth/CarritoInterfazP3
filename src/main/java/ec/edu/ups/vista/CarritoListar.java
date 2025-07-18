@@ -1,5 +1,6 @@
 package ec.edu.ups.vista;
-import ec.edu.ups.modelo.Carrito;
+import ec.edu.ups.util.MensajeInternacionalizacionHandler;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
@@ -11,7 +12,7 @@ public class CarritoListar extends JInternalFrame {
     private DefaultTableModel modelo;
 
 
-    public CarritoListar() {
+    public CarritoListar(MensajeInternacionalizacionHandler mensajes) {
         setContentPane(panelPrincipal);
         setTitle("Listar Carritos");
         setDefaultCloseOperation(JInternalFrame.DISPOSE_ON_CLOSE);
