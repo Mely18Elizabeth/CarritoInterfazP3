@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"ec.edu.ups"},{"l":"ec.edu.ups.controlador"},{"l":"ec.edu.ups.dao"},{"l":"ec.edu.ups.dao.impl"},{"l":"ec.edu.ups.excepciones"},{"l":"ec.edu.ups.modelo"},{"l":"ec.edu.ups.servicio"},{"l":"ec.edu.ups.util"},{"l":"ec.edu.ups.vista"}];updateSearchResults();
